@@ -1,0 +1,18 @@
+Example 1: 
+
+Two function for timers in JS. setInterval() and setTimeout()
+setTimeout (funtion-to-run, amount-of-time)
+setInterval (funtion-to-run, amount-of-time)
+
+i.e 
+setTimeout(wakeUp,8 hours);
+setInterval(eatMeal, 4 hours);
+
+The setInterval function is assigned to a variable, this is called function expression
+Function expression -> you can assign functions to variables
+i.e var timer = setInterval( function(){ theDiv.innerHTML += content; }, 1500 );
+
+The anonymous callback functions takes theDiv and adds content to it every 1500 miliseconds (1.5sec)
+In the click handler, clearIntervak us used to stop the timer
+____________________________________________________________________________________________________________
+
