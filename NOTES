@@ -1,10 +1,10 @@
-Example 1: 
+Example 1:
 
 Two function for timers in JS. setInterval() and setTimeout()
 setTimeout (funtion-to-run, amount-of-time)
 setInterval (funtion-to-run, amount-of-time)
 
-i.e 
+i.e
 setTimeout(wakeUp,8 hours);
 setInterval(eatMeal, 4 hours);
 
@@ -14,5 +14,46 @@ i.e var timer = setInterval( function(){ theDiv.innerHTML += content; }, 1500 );
 
 The anonymous callback functions takes theDiv and adds content to it every 1500 miliseconds (1.5sec)
 In the click handler, clearIntervak us used to stop the timer
-____________________________________________________________________________________________________________
 
+---
+
+Example 2:
+
+Using setTimeout to Trigger a Delayed Change
+In this example:
+A div starts with a class of one (small red square).
+After 2 seconds (2000ms), the setTimeout function changes the class to two (large blue square).
+
+Timeout Recap:
+setTimeout() runs a function once after a set period of time.
+i.e
+Format-> setTimeout(function-to-run, delay-in-milliseconds);
+Example from code -> setTimeout(function(){
+theDiv.setAttribute("class", "two");
+}, 2000);
+
+After 2 seconds, the div switches from class="one" to class="two", triggering the CSS transition.
+
+🎨 Role of CSS Transitions
+
+- Both .one and .two classes have:
+  - Width
+  - Height
+  - Background color
+  - transition: all 2s; (this makes the change animate smoothly over 2 seconds)
+- Once setAttribute() changes the class, the transition kicks in automatically.
+- This is a cool way to combine JavaScript and CSS for animations.
+
+🔔 Key Takeaways
+✅ Use setTimeout() for one-time events (delays).
+✅ CSS transitions handle the animation itself — JavaScript just triggers the class change.
+✅ This keeps the JavaScript simple and offloads animation work to CSS, which is often smoother.
+
+✍️ Quick Comparison to setInterval
+setTimeout(): | setInterval():
+Runs once after delay | Repeats every interval
+Great for delayed actions | Great for recurring tasks
+Example: Change class after 2 seconds | Example: Add content every 1.5 seconds
+Stops automatically after running | Must be stopped manually with clearInterval()
+
+---
