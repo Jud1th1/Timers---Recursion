@@ -15,7 +15,7 @@ i.e var timer = setInterval( function(){ theDiv.innerHTML += content; }, 1500 );
 The anonymous callback functions takes theDiv and adds content to it every 1500 miliseconds (1.5sec)
 In the click handler, clearIntervak us used to stop the timer
 
----
+<--------------------------------------------------------------------------------------------------------->
 
 Example 2:
 
@@ -28,9 +28,11 @@ Timeout Recap:
 setTimeout() runs a function once after a set period of time.
 i.e
 Format-> setTimeout(function-to-run, delay-in-milliseconds);
+![alt text](image-3.png)
 Example from code -> setTimeout(function(){
 theDiv.setAttribute("class", "two");
 }, 2000);
+![alt text](image-4.png)
 
 After 2 seconds, the div switches from class="one" to class="two", triggering the CSS transition.
 
@@ -49,11 +51,39 @@ After 2 seconds, the div switches from class="one" to class="two", triggering th
 ✅ CSS transitions handle the animation itself — JavaScript just triggers the class change.
 ✅ This keeps the JavaScript simple and offloads animation work to CSS, which is often smoother.
 
-✍️ Quick Comparison to setInterval
-setTimeout(): | setInterval():
-Runs once after delay | Repeats every interval
-Great for delayed actions | Great for recurring tasks
-Example: Change class after 2 seconds | Example: Add content every 1.5 seconds
-Stops automatically after running | Must be stopped manually with clearInterval()
+![alt text](image-2.png)
 
----
+<--------------------------------------------------------------------------------------------------------->
+
+Example 3:
+
+🔁 What is Recursion?
+_ Recursion is when a function calls itself.
+_ It allows repeating behavior without a setInterval or loop. \* In this example, classRotator() calls itself after a delay.
+
+🔔 What This Example Does
+There’s a circular div that starts with class "one" (small red circle).
+Every 2 seconds, the class switches between:
+_ "one" (small red circle) and
+_ "two" (large blue circle).
+This swap happens forever — all powered by recursion.
+
+⚙️ How It Works
+
+- The classRotator() function checks the current class (currentClass).
+- If it's "one", it:
+  1. Uses setTimeout() to change the class to "two" after 2 seconds.
+  2. Updates currentClass to "two".
+  3. Calls classRotator() again to keep the cycle going.
+- If it's "two", it:
+  1. Uses setTimeout() to change the class back to "one" after 2 seconds.
+  2. Updates currentClass to "one".
+  3. Calls classRotator() again.
+- This recursive "ping-pong" loop keeps switching the class every 2 seconds.
+
+![alt text](image-1.png)
+
+✨ Key Takeaways
+✅ Recursion + setTimeout() gives you more control than setInterval().
+✅ Great for animations or state changes that need flexible or varying timing.
+✅ Especially useful if you want to add different logic depending on state (like "one" vs "two").

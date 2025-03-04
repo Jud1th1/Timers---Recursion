@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timers and Recursion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>📝JavaScript Notes - Timers & Recursion</h1>
+        <!-- <button id="darkModeToggle">Toggle Dark Mode</button> -->
+    </header>
+    
+    <section>
+        <h2>JavaScript Timers Overview</h2>
+        <p>There are two main timer functions in JavaScript:</p>
+        <ul>
+            <li><strong><code>setTimeout(function, time)</code></strong> - Runs a function after a delay (one-time)</li>
+            <li><strong><code>setInterval(function, time)</code></strong> - Repeats a function at fixed intervals</li>
+        </ul>
+        <p>Example:</p>
+        <pre><code>setTimeout(wakeUp, 8 * 60 * 60 * 1000);  // Run wakeUp after 8 hours</code></pre>
+        <pre><code>setInterval(eatMeal, 4 * 60 * 60 * 1000); // Run eatMeal every 4 hours</code></pre>
+    </section>
+    
+    <section>
+        <h2>Example 1: Adding Paragraphs with setInterval</h2>
+        <p>This example adds a new paragraph to a div every 1.5 seconds until stopped.</p>
+        <pre><code>&lt;script&gt;
+    var theDiv = document.getElementById("thediv");
+    var content = "&lt;p&gt;adding another paragraph&lt;/p&gt;";
+    
+    var timer = setInterval(function() {
+        theDiv.innerHTML += content;
+    }, 1500);
+    
+    document.getElementById("stop").addEventListener("click", function() {
+        clearInterval(timer);
+    });
+    &lt;/script&gt;</code></pre>
+        <p><strong>🔔 Key Points:</strong></p>
+
+        <ul>
+            <li>✅The setInterval function is assigned to a variable, this is called function expression</li>
+            <li>✅Function expression -> you can assign functions to variables</li>
+            <li>✅The anonymous callback functions takes theDiv and adds content to it every 1500 miliseconds (1.5sec)</li>
+            <li>✅In the click handler, clearInterval us used to stop the timer</li>
+            <li><code>setInterval</code> repeats every 1500ms (1.5s)</li>
+            <li><code>clearInterval()</code> stops it when triggered</li>
+        </ul>
+    </section>
+    <!-- ----------------------------------------------------------------------- -->
+    <section>
+        <h2>Example 2: Changing Class with setTimeout</h2>
+        <p>This example changes a div’s class after 2 seconds.</p>
+        <pre><code>&lt;script&gt;
+    var theDiv = document.getElementById("thediv");
+    
+    setTimeout(function() {
+        theDiv.setAttribute("class", "two");
+    }, 2000);
+    &lt;/script&gt;</code></pre>
+
+        <p><strong>🔔 Key Points:</strong></p>
+        <ul>
+            <li><code>setTimeout</code> runs a single time after 2 seconds</li>
+            <li>✅Used to delay styling or transitions</li>
+            <li>Format:</li>
+            <pre><code>setTimeout(function-to-run, delay-in-milliseconds);</code></pre>
+            <li><code>setAttribute()</code> changes the class, the transition kicks in automatically.</li>
+            <li>✅Use setTimeout() for one-time events (delays).</li> 
+            <li>✅ CSS transitions handle the animation itself — JavaScript just triggers the class change.</li>
+            <li>✅ This keeps the JavaScript simple and offloads animation work to CSS, which is often smoother.</li>
+        </ul>
+
+
+        <table>
+            <h2>✍️ Quick Comparison to setInterval</h2>
+            <thead>
+                <tr>
+                    <th>setTimeout()</th>
+                    <th>setInterval()</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Runs once after delay</td>
+                    <td>Repeats every interval</td>
+                </tr>
+                <tr>
+                    <td>Great for delayed actions</td>
+                    <td>Great for recurring tasks</td>
+                </tr>
+                <tr>
+                    <td>Example: Change class after 2 seconds</td>
+                    <td>Example: Add content every 1.5 seconds</td>
+                </tr>
+                <tr>
+                    <td>Stops automatically after running</td>
+                    <td>Must be stopped manually with <code>clearInterval()</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <section>
+        <h2>Example 3: Recursion- Class Rotator</h2>
+        <ul>
+            <strong>🔁 What is Recursion?</strong>
+            <li>Recursion is when a function calls itself.</li>
+            <li>It allows repeating behavior without a <code>setInterval</code> or loop.</li>
+            <li>In this example, <code>classRotator()</code> calls itself after a delay.</li>
+        </ul>
+        
+        <p>This example recursively switches the class of a div between "one" and "two" every 2 seconds. This swap happens forever — all powered by recursion.</p>
+        <pre><code>&lt;script&gt;
+    var theDiv = document.getElementById("thediv");
+    var currentClass = "one";
+    
+    function classRotator() {
+        if (currentClass == "one") {
+            setTimeout(function() {
+                theDiv.className = "two";
+                currentClass = "two";
+                classRotator();  // Recursive call
+            }, 2000);
+        } else {
+            setTimeout(function() {
+                theDiv.className = "one";
+                currentClass = "one";
+                classRotator();  // Recursive call
+            }, 2000);
+        }
+    }
+    
+    classRotator();  // Initial call to start the loop
+    &lt;/script&gt;</code></pre>
+
+        <p>⚙️ How It Works</p>
+        <ul>
+            <li>The <code>classRotator()</code> function checks the current class <code>(currentClass).</code></li>
+            <li>If it's <code>"one"</code>, it:</li>
+            <ol>
+                <li>Uses <code>setTimeout()</code> to change the class to "two" after 2 seconds.</li>
+                <li>Updates <code>currentClass</code> to <code>"two".</code></li>
+                <li>Calls <code>classRotator()</code> again to keep the cycle going.</li>
+            </ol>
+            <li>If it's <code>"two"</code>, it:</li>
+            <ol>
+                <li>Uses <code>setTimeout()</code> to change the class back to "one" after 2 seconds.</li>
+                <li>Updates <code>currentClass</code> to <code>"one".</code></li>
+                <li>Calls <code>classRotator()</code> again.</li>
+            </ol>
+            <li>This recursive "ping-pong" loop keeps switching the class every 2 seconds.</li>
+        </ul>
+
+        <!-- TABLE -->
+        <table>
+            <h2>🔄 Why Use Recursion Instead of setInterval?</h2>
+            <thead>
+                <tr>
+                    <th>Recursion with setTimeout</th>
+                    <th>setInterval()</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>More flexible — you can change the timing between cycles if needed</td>
+                    <td>Fixed timing (same delay every time)</td>
+                </tr>
+                <tr>
+                    <td>Each timeout is scheduled individually</td>
+                    <td>Repeats at fixed intervals</td>
+                </tr>
+                <tr>
+                    <td>Easier to add different logic between intervals</td>
+                    <td>Harder to customize each repeat</td>
+                </tr>
+                <tr>
+                    <td>Can conditionally stop itself</td>
+                    <td>Needs <code>clearInterval()</code> to stop</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- END OF TABLE -->
+
+        <p><strong>🔔 Key Points:</strong></p>
+        <ul>
+            <li>✅ Recursion + <code>setTimeout()</code> gives you more control than <code>setInterval()</code>.</li>
+            <li>✅ Great for animations or state changes that need flexible or varying timing.</li> 
+            <li>✅ Especially useful if you want to add different logic depending on state (like "one" vs "two").</li>
+        </ul>
+
+        <p>🛑 <strong>Optional -</strong> How to Stop It (not shown in example, but good to know)</p>
+        <ul>
+            <li>You could add a condition to stop recursion if needed. Example:</li>
+        </ul>
+        <pre><code>
+   if(someCondition) {
+       return; // Exits the function, stopping the recursion
+    }</code></pre>
+    </section>
+
+<footer>
+    <p>Created by Judith Jean-Fran&ccedil;ois - JavaScript Study Notes</p>
+</footer>
+
+<script>
+    const darkModeButton = document.getElementById('darkModeToggle');
+
+    darkModeButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
+</script>
+</body>
+</html>

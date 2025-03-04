@@ -1,0 +1,121 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 20px;
+    padding: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Main Heading */
+h1 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 30px;
+    text-decoration: underline;
+}
+
+/* Subheadings */
+h2 {
+    color: #34495e;
+    font-size: 1.5em;
+    margin-top: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Paragraph Text */
+p {
+    margin: 10px 0;
+}
+
+/* Lists */
+ul, ol {
+    margin: 10px 0 20px 20px;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+/* Code Blocks */
+pre, code {
+    background-color: #eef2f7;
+    padding: 5px 10px;
+    font-family: "Courier New", monospace;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Emphasis (for key points) */
+strong {
+    color: #c0392b;
+}
+
+/* Optional Boxed Section for Examples */
+.example {
+    background-color: #f4f4f4;
+    border-left: 4px solid #3498db;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+/* Links */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Add space between sections */
+section {
+    margin: 30px;
+    padding-top: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #f0f0f0;
+}
+body.dark-mode th {
+    background-color: #444;
+}
+
+
+ /* Dark Mode */
+ body.dark-mode {
+    background-color: #1e1e1e;
+    color: #ddd;
+}
+body.dark-mode section {
+    background-color: #2c2c2c;
+    border-color: #444;
+}
+body.dark-mode code, body.dark-mode pre {
+    background-color: #333;
+}
